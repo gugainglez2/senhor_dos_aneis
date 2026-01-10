@@ -1,0 +1,29 @@
+{
+  "name": "senhor_dos_aneis",
+  "version": "1.0.0",
+  "description": "",
+  "homepage": "https://github.com/gugainglez2/senhor_dos_aneis#readme",
+  "bugs": {
+    "url": "https://github.com/gugainglez2/senhor_dos_aneis/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gugainglez2/senhor_dos_aneis.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "dev": "gulp watch",
+    "build": "gulp",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "gulp": "^4.0.2",
+    "gulp-imagemin": "^7.1.0",
+    "gulp-sass": "^6.0.1",
+    "gulp-uglify": "^3.0.2",
+    "sass": "^1.97.2"
+  }
+}

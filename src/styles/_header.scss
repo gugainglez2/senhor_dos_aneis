@@ -1,0 +1,64 @@
+@use 'var';
+
+:root {
+    --header_height: 70px;
+}
+
+.header {
+    position: sticky;
+    top: 0;
+    left: 0;
+    background-color: var.$corDeFundo;
+    transition: background-color .5s ease;
+    z-index: 1;
+
+    &--is-hidden {
+        background-color: transparent;
+        transition: background-color .5s ease;
+        opacity: 0;
+        visibility: hidden;
+    }
+
+    &__container {
+        padding: 0 36px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: var(--header_height);
+        
+        @media (max-width: var.$sm) {
+            padding: 0 10px 0 12px;
+            height: 60px;
+        }
+
+        &__logo {
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            max-width: 50%;
+            
+            &__img {
+                height: 80%;
+                @media (max-width: var.$sm) {
+                    height: 60%;
+                    overflow: hidden;
+                }
+            }
+        }
+
+        &__link {
+            transition: opacity .5s ease;
+
+            &__button {
+                &__text-mobile { display: none; }
+                &__text-desktop { display: inline; }
+
+                @media (max-width: var.$sm) {
+                    &__text-mobile { display: inline; }
+                    &__text-desktop { display: none; }
+                }
+            }
+        }
+    }
+}
