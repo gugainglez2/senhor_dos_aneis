@@ -12,8 +12,8 @@ $title: 'Cinzel', sans-serif;
 $text: 'Quattrocento', sans-serif;
 
 // Breakpoints
-$sm: 576px;
-$md: 768px;
-$lg: 992px;
-$xl: 1200px;
-$xxl: 1400px;
+$sm: 576px; //<
+$md: 768px; //>=
+$lg: 992px; //>=
+$xl: 1200px; //>=
+$xxl: 1400px; //>=

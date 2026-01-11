@@ -1,12 +1,74 @@
 @use 'var';
+@use "sass:math";
+
+@function heroContainerItensWidth($content-width:var.$xxl, $content-padding: 0.08, $item-width: 0.27) {
+    @return ($content-width * (1 - $content-padding)) * $item-width;
+}
 
 :root {
+    --hero_wallpaper: url('../images/hero_desktop.jpg');
     --hero_heigth: 100vh;
+    --hero__content_heigth: calc(var(--hero_heigth)  * 0.25);
+    --hero__content_width: #{var.$xxl};
+    --hero__branding_width: #{heroContainerItensWidth()};
+    --hero__action_width: #{heroContainerItensWidth()};
+    --hero__info_width: #{heroContainerItensWidth()};
+    --hero__branding_height: 70px;
+    --hero__action_height: 70px;
+    --hero__info_height: 76px;
+    --hero__info_size: 2.7rem;
+}
+
+
+@media (max-width: #{(var.$xxl - 1px)}) {
+    :root {
+        --hero__content_width: #{var.$xl};
+        --hero__branding_width: #{heroContainerItensWidth(var.$xl)};
+        --hero__action_width: #{heroContainerItensWidth(var.$xl)};
+        --hero__info_width: #{heroContainerItensWidth(var.$xl)};
+        --hero__branding_height: 60px;
+        --hero__action_height: 60px;
+        --hero__info_size: 2.3rem;
+    }
+}
+
+@media (max-width: #{(var.$xl - 1px)}) {
+    :root {
+        --hero__content_width: #{var.$lg};
+        --hero__branding_width: #{heroContainerItensWidth(var.$lg)};
+        --hero__action_width: #{heroContainerItensWidth(var.$lg)};
+        --hero__info_width: #{heroContainerItensWidth(var.$lg)};
+        --hero__branding_height: 50px;
+        --hero__action_height: 50px;
+        --hero__info_size: 1.9rem;
+    }
+}
+
+@media (max-width: #{(var.$lg - 1px)}) {
+    :root {
+        --hero__content_width: #{var.$md};
+        --hero__branding_width: #{heroContainerItensWidth(var.$md)};
+        --hero__action_width: #{heroContainerItensWidth(var.$md)};
+        --hero__info_width: #{heroContainerItensWidth(var.$md)};
+        --hero__branding_height: 40px;
+    }
+}
+
+@media (max-width: #{(var.$md - 1px)}) {
+    
+}
+
+@media (max-width: #{(var.$sm - 1px)}) {
+    :root {
+        --hero_wallpaper: url('../images/hero_mobile.jpg');
+        --hero_heigth: calc(667px - 60px);
+        --hero__content_width: 100vw;
+    }
 }
 
 .hero {
     height: var(--hero_heigth);
-    background-image: url('../images/hero_desktop.jpg');
+    background-image: var(--hero_wallpaper);
     background-size: cover;
     background-position: center;
     display: flex;
@@ -16,28 +78,27 @@
     margin-top: calc(var(--header_height) * -1);
 
     &__background {
-        background-image: url('../images/teste2.jpg');
+        background-image: url('../images/fundo_sombreado.jpg');
         opacity: 0.75;
         width: 100%;
-        height: calc(var(--hero_heigth) * 0.27); 
+        height: var(--hero__content_heigth); 
         position: absolute;
         bottom: 0;
-        z-index: 0;
     }
 
     &__content {
-        width: 100%;
-        height: calc(var(--hero_heigth) * 0.27);
+        width: var(--hero__content_width);
+        height: var(--hero__content_heigth);
+        margin: 0 auto;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        padding-top: calc(var(--hero_heigth) * 0.05);
+        padding: calc(var(--hero__content_heigth) * 0.15) 4% 0;
         z-index: 1;
 
         &__container {
             width: 100%;
             margin: 0 auto;
-            padding: 0 5vw;
             display: grid;
             grid-template-columns: 1fr auto 1fr;
             gap: 3%;
@@ -45,9 +106,17 @@
 
             &__branding {
                 justify-self: start;
+                width: var(--hero__branding_width);
+                overflow: hidden;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
                 img {
-                    max-width: 500px;
-                    height: auto;
+                    width: auto;
+                    height: var(--hero__branding_height);
+                    flex-shrink: 0;
+                    max-width: none;
                 }
             }
 
@@ -55,20 +124,69 @@
                 justify-self: center;
                 
                 button {
-                    width: 350px;
-                    height: 70px; 
+                    width: var(--hero__action_width);
+                    height: var(--hero__action_height);
+                    line-height: 1.15;
                 }
             }
 
             &__info {
                 justify-self: end;
+                max-width: var(--hero__info_width);
+
                 h2 {
                     color: var.$gold;
                     margin: 0;
-                    font-size: 2.6rem;
-                    white-space: normal;
+                    font-size: var(--hero__info_size);
                     text-transform: uppercase;
                     text-align: center;
+                    line-height: 0.8;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: #{(var.$sm - 1px)}) {
+    .hero {
+        margin-top: 0;
+
+        &__background {
+            opacity: 0;
+        }
+
+        &__content {
+            width: var(--hero__content_width);
+            height: var(--hero__content_heigth);
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: calc(var(--hero__content_heigth) * 0.15) 4% 0;
+            z-index: 1;
+
+            &__container {
+                width: 100%;
+                margin: 0 auto;
+                display: flex;
+                align-items: center;
+
+                &__branding {
+                    display: none;
+                }
+
+                &__action {
+                    justify-self: center;
+                    
+                    button {
+                        width: var(--hero__action_width);
+                        height: var(--hero__action_height);
+                        line-height: 1.15;
+                    }
+                }
+
+                &__info {
+                    display: none;
                 }
             }
         }

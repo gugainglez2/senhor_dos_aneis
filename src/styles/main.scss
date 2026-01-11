@@ -106,6 +106,7 @@ body {
     padding: 8px 14px;
     letter-spacing: 1px;
     border: 1px solid var.$corDeFundoBotao;
+    font-family: var.$title;
 
     &:hover {
         background-color: lighten(var.$corDeFundoBotao, 3%);

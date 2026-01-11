@@ -4,6 +4,12 @@
     --header_height: 70px;
 }
 
+@media (max-width: #{(var.$sm - 1px)}) {
+    :root {
+        --header_height: 60px;
+    }
+}
+
 .header {
     position: sticky;
     top: 0;
