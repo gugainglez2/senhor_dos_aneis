@@ -2,11 +2,49 @@
 
 :root {
     --header_height: 70px;
+    --header__logo_height: 60px;
 }
 
-@media (max-width: #{(var.$sm - 1px)}) {
+@media (max-width: #{(var.$md - 1px)}) {
     :root {
         --header_height: 60px;
+        --header__logo_height: 50px;
+    }
+}
+
+@mixin headerHidden() {
+    @media (min-width: #{var.$md}) {
+        &--is-hidden {
+            background-color: transparent;
+            transition: background-color .5s ease;
+            opacity: 0;
+            visibility: hidden;
+        }
+    }
+}
+
+@mixin headerContainerResponsive() {
+    @media (min-width: #{var.$md}) {
+        justify-content: space-between;
+        padding: 0 2.5%;
+
+        &__link {
+            transition: opacity .5s ease;
+
+            .button {
+                height: calc(var(--header_height) - 10px);
+            }
+        }
+    }
+
+    @media (max-width: #{(var.$md - 1px)}) {
+        justify-content: center;
+
+        &__link {
+            .button {
+                display: none;
+            }
+        }
     }
 }
 
@@ -18,52 +56,25 @@
     transition: background-color .5s ease;
     z-index: 1;
 
-    &--is-hidden {
-        background-color: transparent;
-        transition: background-color .5s ease;
-        opacity: 0;
-        visibility: hidden;
-    }
+    @include headerHidden();
 
     &__container {
-        padding: 0 36px;
         display: flex;
-        justify-content: space-between;
         align-items: center;
         height: var(--header_height);
-        
-        @media (max-width: var.$sm) {
-            padding: 0 10px 0 12px;
-            height: 60px;
-        }
+        width: 100%;
+
+        @include headerContainerResponsive();
 
         &__logo {
-            height: 100%;
             display: flex;
             align-items: center;
             justify-content: center;
-            max-width: 50%;
+            width: calc(5 * var(--header__logo_height));
             
             &__img {
-                height: 80%;
-                @media (max-width: var.$sm) {
-                    height: 60%;
-                    overflow: hidden;
-                }
-            }
-        }
-
-        &__link {
-            transition: opacity .5s ease;
-
-            &__button {
-                &__text-mobile { display: none; }
-                &__text-desktop { display: inline; }
-
-                @media (max-width: var.$sm) {
-                    &__text-mobile { display: inline; }
-                    &__text-desktop { display: none; }
-                }
+                height: var(--header__logo_height);
+                overflow: hidden;
             }
         }
     }
