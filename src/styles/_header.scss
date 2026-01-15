@@ -1,10 +1,12 @@
 @use 'var';
 
+//variáveis de dimensões
 :root {
     --header_height: 70px;
     --header__logo_height: 60px;
 }
 
+//Ajuste das dimensões para telas de diversos tamanhos
 @media (max-width: #{(var.$md - 1px)}) {
     :root {
         --header_height: 60px;
@@ -12,6 +14,7 @@
     }
 }
 
+//Mixins relativos ao tamanho da tela
 @mixin headerHidden() {
     @media (min-width: #{var.$md}) {
         &--is-hidden {
@@ -40,7 +43,6 @@
 
     @media (max-width: #{(var.$sm - 1px)}) {
         justify-content: center;
-        padding: 0;
 
         &__link {
             .button {
@@ -50,6 +52,7 @@
     }
 }
 
+//Estilização geral do componente header
 .header {
     position: sticky;
     top: 0;
@@ -57,17 +60,20 @@
     background-color: var.$corDeFundo;
     transition: background-color .5s ease;
     // Verificar, e ajustar se necessário
-    z-index: 1;
+    z-index: 2;
+    padding: 0 2.5%;
 
     @include headerHidden();
 
     &__container {
         height: var(--header_height);
         width: 100%;
+        max-width: var.$xxl;
+        margin: 0 auto;
         display: flex;
         align-items: center;
         justify-content: space-between;
-        padding: 0 2.5%;
+        
 
         &__link {
             transition: opacity .5s ease;

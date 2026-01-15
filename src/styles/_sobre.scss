@@ -1,0 +1,146 @@
+@use 'var';
+@use 'config';
+
+//variáveis de dimensões
+:root {
+    --_sobre_padding-top: calc(var(--header_height) * 2);
+    --_sobre_padding-bottom: var(--header_height);
+    --sobre_font-size_h2: 3em;
+    --sobre_font-size_p: 1.7em;
+    --sobre__text_container_gap: 10%;
+    --sobre_line-height_h2: 1.2;
+    --sobre__line-height_p: 1.45;
+    --sobre__content__link--display: none;
+}
+
+//Ajuste das dimensões para telas de diversos tamanhos
+@media (max-width: #{(var.$xxl - 1px)}) {
+    :root {
+        --sobre_font-size_h2: 2.6em;
+        --sobre_font-size_p: 1.5em;
+    }
+}
+
+@media (max-width: #{(var.$xl - 1px)}) {
+    :root {
+        --sobre_font-size_h2: 2.2em;
+        --sobre_font-size_p: 1.3em;
+    }
+}
+
+@media (max-width: #{(var.$lg - 1px)}) {
+    :root {
+        --_sobre_padding-top: var(--header_height);
+        --sobre_font-size_h2: 1.7em;
+        --sobre_font-size_p: 1em;
+    }
+}
+
+@media (max-width: #{(var.$md - 1px)}) {
+    :root {
+        
+    }
+}
+
+@media (max-width: #{(var.$sm - 1px)}) {
+    :root {
+        --sobre__text_container_gap: 20px;
+        --sobre_font-size_h2: 2em;
+        --sobre_line-height_h2: 0.9;
+        --sobre_font-size_p: 1.2em;
+        --sobre__content__link--display: block;
+    }
+}
+
+@mixin sobreContentText_containerResponsive() {
+    @media (min-width: #{var.$sm}) {
+        position: absolute;
+        top: 0;
+        right: 0;
+        left: 50%;
+        height: 100%;
+        width: 50%;
+        padding-top: var(--_sobre_padding-top);
+        padding-right: calc(var(--contentVW_padding-right) + 4%);
+        padding-bottom: var(--_sobre_padding-bottom);
+        padding-left: 4%;                
+        background-color: rgba(var.$corDeFundo, 0.7);
+    }
+
+    @media (max-width: #{(var.$sm - 1px)}) {
+        position: relative;
+        left: 0;
+        width: 100%;
+        padding: 20px 0;              
+    }
+}
+
+//Estilização geral do componente sobre
+.sobre {
+    &__content {
+        @include config.contentVW();
+        padding-top: var(--_sobre_padding-top);
+        padding-bottom: var(--_sobre_padding-bottom);
+
+        @media (max-width: 576px) {
+            display: block;
+        }
+
+        display: block;
+        position: relative;
+
+        img {
+            width: 100%;
+            display: block; // Remove espaços vazios abaixo da imagem
+        }
+
+        // Selecionando o container de texto específico desta versão
+        &__text_container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center; 
+            align-items: center;
+            gap: var(--sobre__text_container_gap);
+
+            @include sobreContentText_containerResponsive();
+
+            h2 {
+                margin: 0;
+                text-align: center;  
+                font-size: var(--sobre_font-size_h2);
+                line-height: var(--sobre_line-height_h2);
+            }
+
+            p {
+                color: #fff;
+                text-align: justify;  
+                font-size: var(--sobre_font-size_p);
+                line-height: var(--sobre__line-height_p);
+            }
+        }
+
+        &__link {
+            justify-self: center;
+            
+            button {
+                height: 70px;
+                line-height: 1.15;
+            }
+
+            display: var(--sobre__content__link--display);
+        }
+    }
+}
+
+/*
+
+@media (max-width: 768px) {
+            display: block;
+        }
+
+                @media (max-width: 768px) {
+                    position: relative;
+                    left: 0;
+                    width: 100%;
+                }
+*/

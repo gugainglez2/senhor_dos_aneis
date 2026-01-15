@@ -1,0 +1,55 @@
+@use 'var';
+
+//style reset
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: var.$text, sans-serif;
+    list-style: none;
+}
+
+//variáveis de dimensões
+:root {
+    --content_width: #{var.$xxl};
+    --contentVW_padding-right: 5.6%;
+}
+
+//Ajuste das dimensões para telas de diversos tamanhos
+@media (max-width: #{(var.$xxl - 1px)}) {
+    :root {
+        --content_width: #{var.$xl};
+    }
+}
+
+@media (max-width: #{(var.$xl - 1px)}) {
+    :root {
+        --content_width: #{var.$lg};
+    }
+}
+
+@media (max-width: #{(var.$lg - 1px)}) {
+    :root {
+        --content_width: #{var.$md};
+    }
+}
+
+@media (max-width: #{(var.$md - 1px)}) {
+    :root {
+        --content_width: #{var.$sm};
+    }
+}
+
+@media (max-width: #{(var.$sm - 1px)}) {
+    :root {
+        --content_width: 100%;
+    }
+}
+
+@mixin contentVW() {
+    width: var(--content_width);
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: var(--contentVW_padding-right);
+    padding-right: var(--contentVW_padding-right);
+}
