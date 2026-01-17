@@ -1,0 +1,156 @@
+@use 'var';
+@use 'config';
+
+@mixin sinopse() {
+    display: none;
+    margin-top: 10px;
+    padding: 15px;
+    background-color: rgba(var.$corDeFundo, 0.5);
+    border-radius: 8px;
+    border-left: 4px solid var.$gold;
+
+    h3 {
+        font-size: 2rem;
+    }
+
+    ul {
+        display: flex;
+        gap: 10px;
+        list-style: none;
+        padding: 0;
+        margin-bottom: 10px;
+        align-items: center;
+        margin: 10px 0;
+
+        li {
+            font-weight: bold;
+            color: var.$gold;
+
+            &.idade-minima {
+                background-color: var.$corDeFundoIdadeMinima;
+                color: var.$corTextoSecundario;
+                padding: 2px 6px;
+                border-radius: 4px;
+            }
+
+            &.separador {
+                color: var.$corTextoPrincipal;
+            }
+        }
+    }   
+    
+    &__description {
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        transition: all 0.3s ease;
+
+        &--expanded {
+            -webkit-line-clamp: unset;
+        }
+    }
+
+    .read-more-btn {
+        background: none;
+        border: none;
+        color: var.$gold;
+        cursor: pointer;
+        font-weight: bold;
+        padding: 0;
+        margin-top: 5px;
+        text-decoration: underline;
+        font-size: 0.9rem;
+
+        &:hover {
+            filter: brightness(1.2);
+        }
+    }
+}
+
+.filmes {
+    &__content {
+        @include config.contentVW();
+
+        &__container {
+            .tabs {
+                @media (min-width: #{var.$sm}) {
+                    display: grid;
+                    gap: 20px;
+                    grid-template-columns: 1fr 1fr 1fr;
+                }
+
+                &__item {
+                    cursor: pointer;
+                    border: 2px solid transparent;
+                    transition: border-color 0.3s;
+                    position: relative;
+
+                    @media (min-width: #{var.$sm}) {
+                        &--is-active {
+                            border-color: var.$gold;
+                        }
+                    }
+
+                    img { width: 100%; display: block; }
+                }
+                
+                &__info {
+                    display: flex;
+                    justify-self: center;
+                    align-items: center;
+                    height: 80px;
+                    width: 100%;
+                    
+                    .button-info {
+                        background-color: var.$corDeFundoBotaoSecundario;
+                        height: 50px;
+                        width: 156px;
+                        border-radius: 50px;
+                        border: none;
+                        font-family: var.$title;
+                        cursor: pointer;
+                        transition: all 0.3s ease;
+                        text-transform: uppercase;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        margin: 0 auto;
+
+                        &:hover {
+                            background-color: lighten(var.$corDeFundoBotaoSecundario, 10%);
+                            box-shadow: 0 0 10px rgba(0,0,0, 0.5);
+                        }
+                    }
+
+                    @media (min-width: #{var.$sm}) {
+                        display: none;
+                    }
+                }
+
+                &__sinopse {
+                    @include sinopse();
+                    margin-bottom: 20px;
+
+                    @media (max-width: #{(var.$sm - 1px)}) {
+                        &--is-active {
+                            display: block;
+                        }
+                    }
+                }
+            }
+        }
+
+        .sinopse {
+            &__item {
+                @include sinopse();
+
+                @media (min-width: #{var.$sm}) {
+                    &--is-active {
+                        display: block;
+                    }
+                }
+            }
+        }
+    }
+}

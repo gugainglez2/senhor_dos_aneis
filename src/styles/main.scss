@@ -3,16 +3,15 @@
 @use 'header';
 @use 'hero';
 @use 'sobre';
-/*
-@use 'shows';
-@use 'plans';
-@use 'available-devices';
+@use 'filmes';
 @use 'faq';
-@use 'footer';
-*/
 
 body {
     background-color: var.$corDeFundo;
+}
+
+a {
+    text-decoration: none;
 }
 
 @mixin title($font-size: 40px) {
@@ -29,7 +28,7 @@ body {
 }
 
 .text--small {
-    @include text(14px);
+    @include text(16px);
 
     @media (max-width: 768px) {
         @include text(11px);
@@ -40,7 +39,7 @@ body {
     @include text(24px);
 
     @media (max-width: 768px) {
-        @include text(15px);
+        @include text(18px);
     }
 }
 
@@ -77,15 +76,6 @@ body {
     }
 }
 
-/*
-.link-text {
-    @include text(18px);
-    color: var.$corTextoSecundario;
-    text-decoration: underline;
-}
-*/
-
-
 .button {
     display: flex;
     align-items: center;
@@ -93,7 +83,8 @@ body {
     width: 100%;
     height: 60px;
     font-size: 18px;
-    color: var.$corTextoSecundario;
+    font-weight: bold;
+    color: var.$corTextoBotao;
     background-color: var.$corDeFundoBotao;
     text-transform: uppercase;
     border-radius: 4px;
@@ -101,8 +92,13 @@ body {
     padding: 8px 14px;
     letter-spacing: 1px;
     font-family: var.$title;
+    border: 1px solid transparent;
+    transition: all 0.3s ease;
 
     &:hover {
-        background-color: lighten(var.$corDeFundoBotao, 3%);
+        background-color: lighten(var.$corDeFundoBotao, 5%);
+        border-color: var.$gold;
+        box-shadow: 0 0 15px rgba(var.$gold, 0.3);
+        transform: translateY(-2px);
     }
 }

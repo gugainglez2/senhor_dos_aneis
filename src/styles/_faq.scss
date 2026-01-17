@@ -1,0 +1,63 @@
+@use 'var';
+@use 'config';
+
+.faq {
+    padding: 5.6vw;
+    @include config.contentVW();
+
+    h2 {
+        text-align: center;
+        margin-bottom: 24px;
+    }
+
+    a {
+        color: var.$gold;
+        text-decoration: underline;
+    }
+
+    &__questions {
+        &__item {
+            background-color: var.$corDeFundo;
+            margin-bottom: 16px;
+
+            &__question {
+                color: #fff;
+                font-size: 20px;
+                padding: 24px;
+                display: block;
+                cursor: pointer;
+                position: relative;
+
+                &::after {
+                    content: '+';
+                    position: absolute;
+                    top: 0;
+                    right: 24px;
+                    height: 100%;
+                    display: flex;
+                    align-items: center;
+                    font-size: 40px;
+                }
+            }
+
+            &__answer {
+                height: 0;
+                overflow: hidden;
+                padding: 0 24px;
+                transition: height, 0.5s ease;
+            }
+
+            &--is-open {
+                .faq__questions__item__question::after {
+                    content: '-';
+                }
+
+                .faq__questions__item__answer {
+                    height: auto;
+                    padding-bottom: 24px;
+                    transition: height, 0.5s ease;
+                }
+            }
+        }
+    }
+}

@@ -3,13 +3,11 @@
 
 //variáveis de dimensões
 :root {
-    --_sobre_padding-top: calc(var(--header_height) * 2);
+    --_sobre_padding-top: var(--header_height);
     --_sobre_padding-bottom: var(--header_height);
     --sobre_font-size_h2: 3em;
     --sobre_font-size_p: 1.7em;
     --sobre__text_container_gap: 10%;
-    --sobre_line-height_h2: 1.2;
-    --sobre__line-height_p: 1.45;
     --sobre__content__link--display: none;
 }
 
@@ -36,22 +34,16 @@
     }
 }
 
-@media (max-width: #{(var.$md - 1px)}) {
-    :root {
-        
-    }
-}
-
 @media (max-width: #{(var.$sm - 1px)}) {
     :root {
         --sobre__text_container_gap: 20px;
         --sobre_font-size_h2: 2em;
-        --sobre_line-height_h2: 0.9;
         --sobre_font-size_p: 1.2em;
         --sobre__content__link--display: block;
     }
 }
 
+//Mixins relativos ao tamanho da tela
 @mixin sobreContentText_containerResponsive() {
     @media (min-width: #{var.$sm}) {
         position: absolute;
@@ -81,17 +73,13 @@
         @include config.contentVW();
         padding-top: var(--_sobre_padding-top);
         padding-bottom: var(--_sobre_padding-bottom);
-
-        @media (max-width: 576px) {
-            display: block;
-        }
-
         display: block;
         position: relative;
 
         img {
             width: 100%;
             display: block; // Remove espaços vazios abaixo da imagem
+            border-radius: 8px;
         }
 
         // Selecionando o container de texto específico desta versão
@@ -108,14 +96,14 @@
                 margin: 0;
                 text-align: center;  
                 font-size: var(--sobre_font-size_h2);
-                line-height: var(--sobre_line-height_h2);
+                line-height: 1.1;
             }
 
             p {
                 color: #fff;
                 text-align: justify;  
                 font-size: var(--sobre_font-size_p);
-                line-height: var(--sobre__line-height_p);
+                line-height: 1.45;
             }
         }
 
@@ -124,23 +112,9 @@
             
             button {
                 height: 70px;
-                line-height: 1.15;
             }
 
             display: var(--sobre__content__link--display);
         }
     }
 }
-
-/*
-
-@media (max-width: 768px) {
-            display: block;
-        }
-
-                @media (max-width: 768px) {
-                    position: relative;
-                    left: 0;
-                    width: 100%;
-                }
-*/
