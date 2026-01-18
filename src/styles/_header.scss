@@ -1,4 +1,5 @@
 @use 'var';
+@use 'config';
 
 //variáveis de dimensões
 :root {
@@ -54,18 +55,18 @@
 
 //Estilização geral do componente header
 .header {
+    
     position: sticky;
     top: 0;
     left: 0;
     background-color: var.$corDeFundo;
     transition: background-color .5s ease;
-    // Verificar, e ajustar se necessário
     z-index: 2;
-    padding: 0 2.5%;
 
     @include headerHidden();
 
     &__container {
+        @include config.contentVW();
         height: var(--header_height);
         width: 100%;
         max-width: var.$xxl;
@@ -100,6 +101,7 @@
             align-items: center;
             justify-content: center;
             width: calc(5 * var(--header__logo_height));
+            margin-left: -9px;// ajuste fino para Compensar o padding do container e alinhar o logo
             
             &__img {
                 height: var(--header__logo_height);

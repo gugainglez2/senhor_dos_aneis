@@ -28,7 +28,6 @@
 
 @media (max-width: #{(var.$lg - 1px)}) {
     :root {
-        --_sobre_padding-top: var(--header_height);
         --sobre_font-size_h2: 1.7em;
         --sobre_font-size_p: 1em;
     }
@@ -37,7 +36,7 @@
 @media (max-width: #{(var.$sm - 1px)}) {
     :root {
         --sobre__text_container_gap: 20px;
-        --sobre_font-size_h2: 2em;
+        --sobre_font-size_h2: 2.2em;
         --sobre_font-size_p: 1.2em;
         --sobre__content__link--display: block;
     }
@@ -78,11 +77,10 @@
 
         img {
             width: 100%;
-            display: block; // Remove espaços vazios abaixo da imagem
+            display: block;
             border-radius: 8px;
         }
 
-        // Selecionando o container de texto específico desta versão
         &__text_container {
             display: flex;
             flex-direction: column;
